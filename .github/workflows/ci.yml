@@ -40,12 +40,12 @@ jobs:
       - name: Pack, install, and run the published artifact shape
         run: npm run pack:smoke
       - name: End-to-end CLI smoke test
-        run: node dist/cli.js examples/session.jsonl --output .tmp-showcase --format webp --overwrite --json
+        run: node dist/cli.js examples/session.jsonl --output ci-showcase --format webp --overwrite --json
       - run: npm run pack:check
       - name: Upload dogfood assets
         if: matrix.os == 'ubuntu-latest' && matrix.node == 24
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: dsh-showcase-demo
-          path: .tmp-showcase/
+          path: ci-showcase/
           retention-days: 14
