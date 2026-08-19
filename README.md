@@ -15,7 +15,7 @@
 It runs locally, executes no session tools, uploads nothing, and makes **zero AI/model calls**.
 
 ```bash
-npx --yes github:STFQ/dsh-showcase#v0.1.0 dsh-session-<id>.zip
+npx --yes --package=https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz dsh-showcase dsh-session-<id>.zip
 ```
 
 ### Why this exists
@@ -37,7 +37,7 @@ Requirements: Node.js **22.19 or newer**. No FFmpeg and no API key are required.
 2. Install the pinned release from GitHub:
 
 ```bash
-npm install --global github:STFQ/dsh-showcase#v0.1.0
+npm install --global https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz
 ```
 
 3. Render it locally:
@@ -147,7 +147,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Please use GitHub private vulnerability 
 它完全在本地运行，不执行会话中的工具、不上传数据，且 **不会调用任何 AI 模型，不消耗 Token**。
 
 ```bash
-npx --yes github:STFQ/dsh-showcase#v0.1.0 dsh-session-<id>.zip
+npx --yes --package=https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz dsh-showcase dsh-session-<id>.zip
 ```
 
 ### 为什么做这个项目
@@ -169,7 +169,7 @@ DSH 会记录提示词、工具调用、代码差异、执行结果和最终回�
 2. 从 GitHub 安装已固定版本的 Release：
 
 ```bash
-npm install --global github:STFQ/dsh-showcase#v0.1.0
+npm install --global https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz
 ```
 
 3. 在本地生成演示：
