@@ -1,0 +1,6 @@
+dist
+node_modules
+assets/*.webp
+assets/*.gif
+assets/*.png
+package-lock.json

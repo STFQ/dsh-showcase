@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "generator": "dsh-showcase",
+  "generatorVersion": "0.1.0",
+  "input": {
+    "path": "session.jsonl",
+    "format": "jsonl",
+    "events": 10,
+    "subagents": 0
+  },
+  "scenes": [
+    {
+      "kind": "prompt",
+      "eyebrow": "PROMPT",
+      "title": "What the user asked",
+      "body": "Add a /health endpoint, cover it with tests, and keep the existing API stable. Send the preview to [REDACTED_EMAIL]; api_key=[REDACTED]",
+      "seq": 3
+    },
+    {
+      "kind": "tool",
+      "eyebrow": "TOOL CALL",
+      "title": "apply_patch",
+      "body": "{\n \"path\": \"<HOME>/dsh-plugin/src/server.ts\",\n \"change\": \"health route\"\n}",
+      "seq": 5
+    },
+    {
+      "kind": "diff",
+      "eyebrow": "CODE CHANGE",
+      "title": "A focused patch",
+      "body": "diff --git a/src/server.ts b/src/server.ts\n@@ -18,3 +18,7 @@\n+router.get('/health', (_req, res) => {\n+ res.json({ status: 'ok' })\n+})",
+      "seq": 6
+    },
+    {
+      "kind": "answer",
+      "eyebrow": "RESULT",
+      "title": "What shipped",
+      "body": "Shipped the health endpoint with regression coverage. All 18 tests pass, and the existing routes are unchanged.",
+      "seq": 7
+    }
+  ],
+  "redactions": {
+    "total": 3,
+    "byType": {
+      "email": 1,
+      "secret-assignment": 1,
+      "unix-home": 1
+    }
+  },
+  "warnings": []
+}

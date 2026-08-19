@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/STFQ/dsh-showcase/v0.1.0/schemas/result.schema.json",
+  "title": "dsh-showcase result",
+  "description": "Version 1 machine output from dsh-showcase --json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "success",
+    "dryRun",
+    "input",
+    "scenes",
+    "artifacts",
+    "redactions",
+    "warnings",
+    "durationMs"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "success": { "const": true },
+    "dryRun": { "type": "boolean" },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "format", "events", "subagents"],
+      "properties": {
+        "path": { "type": "string" },
+        "format": { "enum": ["jsonl", "jsonl.zstd", "dsh-export.zip"] },
+        "events": { "type": "integer", "minimum": 1 },
+        "subagents": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "eyebrow", "title"],
+        "properties": {
+          "kind": { "enum": ["prompt", "tool", "diff", "result", "answer"] },
+          "eyebrow": { "type": "string" },
+          "title": { "type": "string" }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "path", "mime", "bytes"],
+        "properties": {
+          "type": {
+            "enum": [
+              "animated-webp",
+              "animated-gif",
+              "poster",
+              "social-preview",
+              "readme-snippet",
+              "manifest"
+            ]
+          },
+          "path": { "type": "string" },
+          "mime": { "type": "string" },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "redactions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "byType"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "byType": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "durationMs": { "type": "integer", "minimum": 0 }
+  }
+}

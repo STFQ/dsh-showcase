@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible parser, redaction, rendering, or CLI problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Never attach a private session or real secret. Use a synthetic reproduction.
+  - type: input
+    id: version
+    attributes:
+      label: dsh-showcase version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js and operating system
+      placeholder: Node 24.1.0, Windows 11
+    validations:
+      required: true
+  - type: dropdown
+    id: input
+    attributes:
+      label: Input format
+      options: [Official DSH ZIP, Raw JSONL, Zstandard JSONL, Standard input]
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal synthetic reproduction
+      description: Include the command and sanitized fixture or repository link.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true

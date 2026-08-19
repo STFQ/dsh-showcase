@@ -1,0 +1,24 @@
+# dsh-showcase
+
+> Local, zero-token conversion of DeepSeek Harness sessions into redacted, README-ready animated WebP/GIF demos and posters.
+
+This is an independent community project, not an official DeepSeek product. It never executes session tools, uploads data, or calls a model. Redaction is enabled by default but generated artifacts still require human review before publication.
+
+## Start here
+
+- [Bilingual README](README.md): product overview, quick start, privacy, and examples
+- [CLI reference](docs/cli.md): flags, stdout/stderr contract, outputs, and exit codes
+- [Security model](docs/security.md): guarantees, limits, and responsible disclosure
+
+## Technical reference
+
+- [DSH session compatibility](docs/session-format.md): verified rc.8 JSONL, Zstandard, packed-row, and export-ZIP contracts
+- [Result JSON Schema](schemas/result.schema.json): `--json` machine-output contract
+- [Manifest JSON Schema](schemas/manifest.schema.json): generated showcase manifest contract
+- [Design sources](docs/design.md): pinned upstream contracts and mature CLI/recording references
+
+## Examples and contribution
+
+- [Synthetic session fixture](examples/session.jsonl): safe official-shaped input
+- [Contributor instructions](CONTRIBUTING.md): setup and pull-request expectations
+- [Agent contributor guide](AGENTS.md): invariants, repository map, and documentation synchronization

@@ -1,0 +1,89 @@
+{
+  "name": "dsh-showcase",
+  "version": "0.1.0",
+  "description": "Turn DeepSeek Harness sessions into polished, redacted, README-ready animated demos — locally, with zero AI tokens.",
+  "type": "module",
+  "bin": {
+    "dsh-showcase": "dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "assets",
+    "examples",
+    "schemas",
+    "docs",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "README.md",
+    "llms.txt",
+    "CHANGELOG.md",
+    "LICENSE",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "oxlint src test scripts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run --pool=threads --maxWorkers=1",
+    "test:watch": "vitest --pool=threads --maxWorkers=1",
+    "pack:check": "npm pack --dry-run --cache .npm-cache --offline=false",
+    "check": "npm run format:check && npm run typecheck && npm run lint && npm test && npm run build && npm run pack:check",
+    "demo": "node dist/cli.js examples/session.jsonl --output assets/generated --format both --overwrite",
+    "pack:smoke": "node scripts/pack-smoke.mjs",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run check"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin-demo",
+    "ai-agent",
+    "agent-session",
+    "session-replay",
+    "demo-generator",
+    "animated-webp",
+    "github-readme",
+    "redaction",
+    "offline",
+    "zero-token"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STFQ/dsh-showcase.git"
+  },
+  "bugs": {
+    "url": "https://github.com/STFQ/dsh-showcase/issues"
+  },
+  "homepage": "https://github.com/STFQ/dsh-showcase#readme",
+  "author": "STFQ",
+  "license": "MIT",
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "oxlint": "^1.79.0",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

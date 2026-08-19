@@ -1,0 +1,28 @@
+name: Feature request
+description: Propose a focused improvement with a concrete user story.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What DSH demo workflow is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+      description: Describe observable behavior, not only an implementation.
+    validations:
+      required: true
+  - type: checkboxes
+    id: invariants
+    attributes:
+      label: Product invariants
+      options:
+        - label: The proposal can remain local-only and make zero model/API calls.
+          required: true
+        - label: The proposal does not require executing untrusted session content.
+          required: true

@@ -1,0 +1,10 @@
+node_modules/
+.npm-cache/
+dist/
+coverage/
+*.tgz
+.DS_Store
+assets/generated/
+.env
+.env.*
+!.env.example
