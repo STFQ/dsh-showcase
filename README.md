@@ -4,6 +4,7 @@
 
 [![CI](https://github.com/STFQ/dsh-showcase/actions/workflows/ci.yml/badge.svg)](https://github.com/STFQ/dsh-showcase/actions/workflows/ci.yml)
 [![Node.js 22.19+](https://img.shields.io/badge/Node.js-22.19%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![npm](https://img.shields.io/npm/v/dsh-showcase?logo=npm)](https://www.npmjs.com/package/dsh-showcase)
 [![MIT License](https://img.shields.io/badge/license-MIT-4de4c1.svg)](LICENSE)
 
 ![dsh-showcase turns a DeepSeek Harness session into a redacted, animated README demo](assets/hero.webp)
@@ -15,7 +16,13 @@
 It runs locally, executes no session tools, uploads nothing, and makes **zero AI/model calls**.
 
 ```bash
-npx --yes --package=https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz dsh-showcase dsh-session-<id>.zip
+npx --yes dsh-showcase@0.1.1 dsh-session-<id>.zip
+```
+
+If the npm registry is unavailable, use the exact [GitHub Release artifact](https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.1):
+
+```bash
+npx --yes --package=https://github.com/STFQ/dsh-showcase/releases/download/v0.1.1/dsh-showcase-0.1.1.tgz dsh-showcase dsh-session-<id>.zip
 ```
 
 ### Why this exists
@@ -33,11 +40,27 @@ DSH records semantic events—prompts, tool calls, diffs, results, and final ans
 
 Requirements: Node.js **22.19 or newer**. No FFmpeg and no API key are required.
 
-1. In the DSH Web UI, run `/export` in the session you want to share. DSH downloads an official session ZIP.
-2. Install the pinned release from GitHub:
+#### Try it immediately (no DSH account or API key)
+
+Render the included safe fixture first. This proves the complete output path in about 10 seconds:
 
 ```bash
-npm install --global https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz
+npx --yes dsh-showcase@0.1.1 examples/session.jsonl --output ./showcase --format both
+```
+
+#### Render a real DSH session
+
+1. In the DSH Web UI, run `/export` in the session you want to share. DSH downloads an official session ZIP.
+2. Install the pinned release:
+
+```bash
+npm install --global dsh-showcase@0.1.1
+```
+
+For a registry-free install, use the [v0.1.1 GitHub Release](https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.1):
+
+```bash
+npm install --global https://github.com/STFQ/dsh-showcase/releases/download/v0.1.1/dsh-showcase-0.1.1.tgz
 ```
 
 3. Render it locally:
@@ -147,7 +170,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Please use GitHub private vulnerability 
 它完全在本地运行，不执行会话中的工具、不上传数据，且 **不会调用任何 AI 模型，不消耗 Token**。
 
 ```bash
-npx --yes --package=https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz dsh-showcase dsh-session-<id>.zip
+npx --yes dsh-showcase@0.1.1 dsh-session-<id>.zip
+```
+
+如果 npm 暂时不可用，也可以使用固定的 [GitHub Release](https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.1)：
+
+```bash
+npx --yes --package=https://github.com/STFQ/dsh-showcase/releases/download/v0.1.1/dsh-showcase-0.1.1.tgz dsh-showcase dsh-session-<id>.zip
 ```
 
 ### 为什么做这个项目
@@ -165,11 +194,27 @@ DSH 会记录提示词、工具调用、代码差异、执行结果和最终回�
 
 需要 Node.js **22.19 或更高版本**，不需要 FFmpeg，也不需要 API Key。
 
-1. 在 DSH Web 界面的目标会话中运行 `/export`，下载官方会话 ZIP。
-2. 从 GitHub 安装已固定版本的 Release：
+#### 立即试用（无需 DSH 账号或 API Key）
+
+先用仓库内置的安全示例生成完整产物，约 10 秒即可确认流程：
 
 ```bash
-npm install --global https://github.com/STFQ/dsh-showcase/releases/download/v0.1.0/dsh-showcase-0.1.0.tgz
+npx --yes dsh-showcase@0.1.1 examples/session.jsonl --output ./showcase --format both
+```
+
+#### 生成真实 DSH 会话演示
+
+1. 在 DSH Web 界面的目标会话中运行 `/export`，下载官方会话 ZIP。
+2. 安装固定版本：
+
+```bash
+npm install --global dsh-showcase@0.1.1
+```
+
+如果 npm 暂时不可用，可以使用 [v0.1.1 GitHub Release](https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.1)：
+
+```bash
+npm install --global https://github.com/STFQ/dsh-showcase/releases/download/v0.1.1/dsh-showcase-0.1.1.tgz
 ```
 
 3. 在本地生成演示：

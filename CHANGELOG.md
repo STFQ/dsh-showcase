@@ -4,6 +4,14 @@ All notable changes are documented here. The format follows [Keep a Changelog](h
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-08-20
+
+### Changed
+
+- Added a zero-setup fixture path so first-time users can render a demo before exporting a real DSH session.
+- Added public npm publishing metadata and discovery keywords for the `dsh-showcase` CLI.
+- Clarified the npm-first install path with an exact GitHub Release fallback.
+
 ## [0.1.0] - 2026-08-20
 
 ### Added
@@ -15,5 +23,6 @@ All notable changes are documented here. The format follows [Keep a Changelog](h
 - JSON automation output, stdin, dry-run, conflict-safe writes, three visual themes, and stable exit codes.
 - Bilingual README and agent-oriented `llms.txt`, `AGENTS.md`, schemas, and format/security references.
 
-[Unreleased]: https://github.com/STFQ/dsh-showcase/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/STFQ/dsh-showcase/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.1
 [0.1.0]: https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.0

@@ -10,6 +10,14 @@ This is an independent community project, not an official DeepSeek product. It n
 - [CLI reference](docs/cli.md): flags, stdout/stderr contract, outputs, and exit codes
 - [Security model](docs/security.md): guarantees, limits, and responsible disclosure
 
+## Install
+
+```bash
+npx --yes dsh-showcase@0.1.1 examples/session.jsonl --output ./showcase --format both
+```
+
+For a registry-free install, use the exact [GitHub Release tarball](https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.1). The CLI is local-only: it does not upload sessions, execute session tools, or call a model.
+
 ## Technical reference
 
 - [DSH session compatibility](docs/session-format.md): verified rc.8 JSONL, Zstandard, packed-row, and export-ZIP contracts

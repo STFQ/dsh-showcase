@@ -1,6 +1,6 @@
 {
   "name": "dsh-showcase",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn DeepSeek Harness sessions into polished, redacted, README-ready animated demos — locally, with zero AI tokens.",
   "type": "module",
   "bin": {
@@ -35,6 +35,9 @@
   "engines": {
     "node": ">=22.19.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -59,7 +62,10 @@
     "agent-session",
     "session-replay",
     "demo-generator",
+    "agent-demo",
+    "session-to-video",
     "animated-webp",
+    "animated-gif",
     "github-readme",
     "redaction",
     "offline",
