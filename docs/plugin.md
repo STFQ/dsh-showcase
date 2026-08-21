@@ -10,6 +10,14 @@ After the plugin change is merged into the repository, install it into the DSH p
 dsh plugin --profile <profile> add github:STFQ/dsh-showcase
 ```
 
+When the public package is published, the equivalent registry install is:
+
+```bash
+dsh plugin --profile <profile> add dsh-session-showcase
+```
+
+The repository currently provides the GitHub install path; publishing to npm still requires the maintainer's npm credentials.
+
 For local development, install the checkout instead:
 
 ```bash
