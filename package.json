@@ -1,21 +1,32 @@
 {
-  "name": "dsh-showcase",
-  "version": "0.1.1",
-  "description": "Turn DeepSeek Harness sessions into polished, redacted, README-ready animated demos — locally, with zero AI tokens.",
+  "name": "dsh-session-showcase",
+  "version": "0.2.0",
+  "description": "Turn DeepSeek Harness sessions into redacted, README-ready animated demos — as a local CLI or DSH plugin.",
   "type": "module",
   "bin": {
     "dsh-showcase": "dist/cli.js"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/plugin.js",
+  "types": "./dist/plugin.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.js"
+    },
+    "./core": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
     }
   },
   "files": [
     "dist",
+    "cordis.patch.yml",
     "src",
     "assets",
     "examples",
@@ -57,6 +68,7 @@
     "deepseek",
     "deepseek-harness",
     "dsh",
+    "dsh-plugin",
     "dsh-plugin-demo",
     "ai-agent",
     "agent-session",
@@ -86,10 +98,29 @@
     "sharp": "^0.35.3"
   },
   "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-fs": "^0.1.1-rc.1",
+    "@deepseek-ai/dsh-tools": "^0.1.1-rc.1",
     "@types/node": "^24.0.0",
     "oxlint": "^1.79.0",
     "prettier": "^3.9.6",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.1",
+    "@deepseek-ai/dsh-fs": ">=0.1.1-rc.1",
+    "@deepseek-ai/dsh-tools": ">=0.1.1-rc.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-fs": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
   }
 }
