@@ -1,6 +1,7 @@
 import type { Context } from "@deepseek-ai/cordis";
 import { defineTool } from "@deepseek-ai/dsh-tools";
 import type {} from "@deepseek-ai/dsh-fs";
+import { basename, join } from "node:path";
 import { createShowcase } from "./index.js";
 import type { OutputFormat, RedactMode, ThemeName } from "./types.js";
 
@@ -131,7 +132,9 @@ async function executeShowcase(
     dry_run: result.dryRun,
     scene_count: result.scenes.length + 1,
     redactions: result.redactions.total,
-    artifacts: result.artifacts.map((artifact) => artifact.path),
+    artifacts: result.artifacts.map((artifact) =>
+      join(outputTarget.displayPath, basename(artifact.path)),
+    ),
   };
 }
 
