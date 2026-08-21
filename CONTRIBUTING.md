@@ -23,3 +23,13 @@ Run `npm run demo` after a successful build to regenerate a local demonstration 
 - Include a changelog entry for public behavior changes.
 
 Before opening a PR, run `npm run check`. PRs should explain what changed, why it matters, security/privacy impact, and verification performed.
+
+## DSH plugin release checklist
+
+For changes that affect the native plugin, also verify:
+
+- `package.json` still exposes the `dsh.bundle` patch and the plugin entry point.
+- `npm run pack:smoke` installs the packed package and finds `dist/plugin.js` plus `cordis.patch.yml`.
+- Tool inputs remain local-only, bounded, and redacted by default.
+- The `dsh-plugin` GitHub topic and the plugin installation instructions remain accurate.
+- The standalone `dsh-showcase` CLI continues to work independently of DSH.
