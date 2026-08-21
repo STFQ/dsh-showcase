@@ -36,7 +36,7 @@ The plugin registers one tool: `dsh_showcase`.
 | `overwrite`  | no       | Replace known generated files when `true`.                      |
 | `dry_run`    | no       | Inspect and redact without writing artifacts.                   |
 
-The result includes the resolved input/output display paths, scene count, redaction count, and generated artifact paths. The plugin refuses inputs larger than 64 MiB, does not execute anything from the imported session, and does not make model or network calls.
+The result includes the resolved input/output display paths, scene count, redaction count, and generated artifact paths. Its stable shape is described by [`../schemas/plugin-result.schema.json`](../schemas/plugin-result.schema.json). The plugin refuses inputs larger than 64 MiB, does not execute anything from the imported session, and does not make model or network calls.
 
 ## Filesystem boundary
 
@@ -45,3 +45,9 @@ Input resolution, metadata checks, and byte reads go through DSH's `ctx.fs` prov
 ## Registry and listing status
 
 DSH's plugin mechanism installs packages from a local path, GitHub, or npm. It does not automatically publish every plugin to a single official central catalog. This repository is therefore the installable source package; a separate community “awesome plugins” list, if desired, requires a pull request to that list after this plugin is merged and released.
+
+## 中文说明
+
+这个插件注册一个 `dsh_showcase` 工具：读取本地 DSH 导出的 ZIP、JSONL 或 Zstandard 日志，默认自动脱敏，然后在工作区生成 WebP/GIF、封面图、README 片段和清单。插件不执行导入会话里的工具，不上传数据，也不调用模型。
+
+本地开发时先在仓库目录执行 `npm install && npm run build`，再用 `dsh plugin --profile <profile> add .` 安装。正式使用时可直接从 GitHub 安装：`dsh plugin --profile <profile> add github:STFQ/dsh-showcase`。
