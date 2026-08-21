@@ -77,4 +77,34 @@ describe("dsh plugin", () => {
       expect.arrayContaining(["hero.webp", "showcase.manifest.json"]),
     );
   }, 30_000);
+
+  it("rejects missing and oversized inputs before reading or rendering", async () => {
+    const tools: RegisteredTool[] = [];
+    const ctx = {
+      systemPrompt: { section: () => undefined },
+      tools: { register: (tool: RegisteredTool) => tools.push(tool) },
+      fs: {
+        resolve: async (target: string) => ({ displayPath: target }),
+        stat: async (target: { displayPath: string }) =>
+          target.displayPath === "missing"
+            ? undefined
+            : { size: 64 * 1024 * 1024 + 1 },
+        readBytes: async () => {
+          throw new Error("readBytes should not run for rejected input");
+        },
+      },
+    } as unknown as Context;
+
+    apply(ctx);
+    const exec = {
+      signal: new AbortController().signal,
+      agent: { session: { header: {} } },
+    };
+    await expect(
+      tools[0]!.execute({ input_path: "missing" }, exec),
+    ).rejects.toThrow("Input does not exist: missing");
+    await expect(
+      tools[0]!.execute({ input_path: "oversized" }, exec),
+    ).rejects.toThrow("Input exceeds the 64 MiB safety limit.");
+  });
 });
