@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/STFQ/dsh-showcase/main/schemas/plugin-result.schema.json",
+  "title": "dsh_showcase plugin result",
+  "description": "Canonical output returned by the native DSH dsh_showcase tool.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "input_path",
+    "output_dir",
+    "dry_run",
+    "scene_count",
+    "redactions",
+    "artifacts"
+  ],
+  "properties": {
+    "input_path": { "type": "string" },
+    "output_dir": { "type": "string" },
+    "dry_run": { "type": "boolean" },
+    "scene_count": { "type": "integer", "minimum": 2, "maximum": 8 },
+    "redactions": { "type": "integer", "minimum": 0 },
+    "artifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
