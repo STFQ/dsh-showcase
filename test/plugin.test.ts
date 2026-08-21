@@ -71,7 +71,9 @@ describe("dsh plugin", () => {
     expect(result.scene_count).toBeGreaterThanOrEqual(2);
     expect(result.redactions).toBeGreaterThan(0);
     expect(
-      result.artifacts.some((artifact) => artifact.endsWith("/hero.webp")),
+      result.artifacts.some((artifact) =>
+        artifact.replaceAll("\\", "/").endsWith("/hero.webp"),
+      ),
     ).toBe(true);
     expect(await readdir(outputPath)).toEqual(
       expect.arrayContaining(["hero.webp", "showcase.manifest.json"]),
