@@ -74,7 +74,8 @@ export interface ShowcaseResult {
 }
 
 export interface ShowcaseOptions {
-  readonly input: string;
+  readonly input: string | Uint8Array;
+  readonly inputLabel?: string;
   readonly output: string;
   readonly format: OutputFormat;
   readonly theme: ThemeName;
