@@ -33,6 +33,7 @@ The CLI is local-only: it does not upload sessions, execute session tools, or ca
 - [DSH session compatibility](docs/session-format.md): verified rc.8 JSONL, Zstandard, packed-row, and export-ZIP contracts
 - [Result JSON Schema](schemas/result.schema.json): `--json` machine-output contract
 - [Manifest JSON Schema](schemas/manifest.schema.json): generated showcase manifest contract
+- [Plugin result JSON Schema](schemas/plugin-result.schema.json): canonical `dsh_showcase` output contract
 - [Design sources](docs/design.md): pinned upstream contracts and mature CLI/recording references
 - [Plugin contract](docs/plugin.md): DSH tool name, arguments, filesystem boundaries, and installation modes
 
