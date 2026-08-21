@@ -36,7 +36,17 @@ async function readStdin(): Promise<Buffer> {
   return Buffer.concat(chunks, bytes);
 }
 
-async function readBoundedInput(input: string): Promise<Buffer> {
+async function readBoundedInput(input: string | Uint8Array): Promise<Buffer> {
+  if (input instanceof Uint8Array) {
+    const buffer = Buffer.from(input);
+    if (buffer.length > MAX_INPUT_BYTES) {
+      throw new ShowcaseError(
+        "Input exceeds the 64 MiB safety limit.",
+        EXIT.input,
+      );
+    }
+    return buffer;
+  }
   if (input === "-") return readStdin();
   let buffer: Buffer;
   try {
@@ -245,9 +255,18 @@ function parseJsonl(
     : { header, events, warnings };
 }
 
-export async function parseSession(input: string): Promise<ParsedSession> {
+export async function parseSession(
+  input: string | Uint8Array,
+  inputLabel?: string,
+): Promise<ParsedSession> {
   const source = await readBoundedInput(input);
-  const inputLabel = input === "-" ? "stdin" : basename(input);
+  const label =
+    inputLabel ??
+    (typeof input === "string"
+      ? input === "-"
+        ? "stdin"
+        : basename(input)
+      : "session export");
   let bytes = source;
   let sourceFormat: ParsedSession["sourceFormat"] = "jsonl";
   let subagentCount = 0;
@@ -275,11 +294,11 @@ export async function parseSession(input: string): Promise<ParsedSession> {
     text = bytes.toString("utf8");
   }
 
-  const parsed = parseJsonl(text, inputLabel);
+  const parsed = parseJsonl(text, label);
   return {
     ...parsed,
     sourceFormat,
-    inputLabel,
+    inputLabel: label,
     warnings: [...outerWarnings, ...parsed.warnings],
     subagentCount,
   };

@@ -68,20 +68,27 @@ try {
     installRoot,
   );
 
-  const installed = join(installRoot, "node_modules", "dsh-showcase");
+  const installed = join(installRoot, "node_modules", "dsh-session-showcase");
   const fixture = join(installed, "examples", "session.jsonl");
   await access(join(installed, "assets", "hero.webp"));
   await access(join(installed, "AGENTS.md"));
   await access(join(installed, "schemas", "manifest.schema.json"));
+  await access(join(installed, "dist", "plugin.js"));
+  await access(join(installed, "cordis.patch.yml"));
   await access(fixture);
+
+  const installedPackage = JSON.parse(
+    await readFile(join(installed, "package.json"), "utf8"),
+  );
+  if (installedPackage.dsh?.bundle?.patch !== "./cordis.patch.yml") {
+    throw new Error("Package does not expose the DSH bundle patch.");
+  }
 
   const version = runNpm(
     ["exec", "--prefix", installRoot, "--", "dsh-showcase", "--version"],
     installRoot,
   ).trim();
-  const packageVersion = JSON.parse(
-    await readFile(join(installed, "package.json"), "utf8"),
-  ).version;
+  const packageVersion = installedPackage.version;
   if (version !== packageVersion)
     throw new Error(
       `CLI version ${version} does not match package ${packageVersion}`,

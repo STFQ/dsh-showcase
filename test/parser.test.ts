@@ -33,6 +33,16 @@ describe("parseSession", () => {
     expect(session.events.at(-1)?.type).toBe("assistant/chunk");
   });
 
+  it("accepts bytes supplied by the DSH filesystem provider", async () => {
+    const session = await parseSession(
+      new TextEncoder().encode(JSONL),
+      "exported-session.jsonl",
+    );
+    expect(session.inputLabel).toBe("exported-session.jsonl");
+    expect(session.sourceFormat).toBe("jsonl");
+    expect(session.events).toHaveLength(4);
+  });
+
   it("reads concatenated Zstandard frames used by DSH persistence", async () => {
     const [header, ...events] = JSONL.trimEnd().split("\n");
     const encoded = Buffer.concat([

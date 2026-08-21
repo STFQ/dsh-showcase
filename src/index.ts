@@ -73,7 +73,7 @@ export async function createShowcase(
   options: ShowcaseOptions,
 ): Promise<ShowcaseResult> {
   const started = performance.now();
-  const parsed = await parseSession(options.input);
+  const parsed = await parseSession(options.input, options.inputLabel);
   const selected = selectMoments(parsed.events, options.maxScenes);
   const rawTitle = options.title ?? suggestedTitle(selected);
   const redacted =

@@ -1,22 +1,32 @@
-# dsh-showcase
+# dsh-session-showcase
 
-> Local, zero-token conversion of DeepSeek Harness sessions into redacted, README-ready animated WebP/GIF demos and posters.
+> Local, zero-token conversion of DeepSeek Harness sessions into redacted, README-ready animated WebP/GIF demos and posters, packaged as a standalone CLI and DSH tool plugin.
 
 This is an independent community project, not an official DeepSeek product. It never executes session tools, uploads data, or calls a model. Redaction is enabled by default but generated artifacts still require human review before publication.
 
 ## Start here
 
-- [Bilingual README](README.md): product overview, quick start, privacy, and examples
+- [Bilingual README](README.md): product overview, DSH plugin install, CLI quick start, privacy, and examples
 - [CLI reference](docs/cli.md): flags, stdout/stderr contract, outputs, and exit codes
 - [Security model](docs/security.md): guarantees, limits, and responsible disclosure
 
 ## Install
 
 ```bash
-npx --yes dsh-showcase@0.1.1 examples/session.jsonl --output ./showcase --format both
+dsh plugin --profile <profile> add github:STFQ/dsh-showcase
 ```
 
-For a registry-free install, use the exact [GitHub Release tarball](https://github.com/STFQ/dsh-showcase/releases/tag/v0.1.1). The CLI is local-only: it does not upload sessions, execute session tools, or call a model.
+The plugin registers `dsh_showcase`. It reads a local DSH session export through `ctx.fs`, writes generated artifacts to the local workspace, and enables automatic redaction by default.
+
+For the standalone CLI from a source checkout:
+
+```bash
+npm install
+npm run build
+node dist/cli.js examples/session.jsonl --output ./showcase --format both
+```
+
+The CLI is local-only: it does not upload sessions, execute session tools, or call a model. The npm package name is `dsh-session-showcase`; its standalone binary remains `dsh-showcase`.
 
 ## Technical reference
 
@@ -24,6 +34,7 @@ For a registry-free install, use the exact [GitHub Release tarball](https://gith
 - [Result JSON Schema](schemas/result.schema.json): `--json` machine-output contract
 - [Manifest JSON Schema](schemas/manifest.schema.json): generated showcase manifest contract
 - [Design sources](docs/design.md): pinned upstream contracts and mature CLI/recording references
+- [Plugin contract](docs/plugin.md): DSH tool name, arguments, filesystem boundaries, and installation modes
 
 ## Examples and contribution
 
